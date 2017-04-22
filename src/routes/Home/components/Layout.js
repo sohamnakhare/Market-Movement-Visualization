@@ -1,6 +1,7 @@
 import React from 'react';
 import Highchart from './Highchart';
-import BasicBarChart from './BasicBarChart'
+import BasicBarChart from './BasicBarChart';
+import PieChart from './PieChart';
 
 class Layout extends React.Component {
 	render() {
@@ -11,12 +12,19 @@ class Layout extends React.Component {
 						<BasicBarChart />
 					</div>
 					<div className="col-md-6">
-					
+						MAP
 					</div>
 				</div>
 				<div className="row">
-					<div className="col-md-12">
-						display a table list here
+					<div className="col-md-6">
+						<PieChart 
+						chartId="piechart-container-1"
+						title="Contribution of overall trips"/>
+					</div>
+					<div className="col-md-6">
+						<PieChart 
+						chartId="piechart-container-2"
+						title="Contribution of Profit"/>
 					</div>
 				</div>
 			</div>	
