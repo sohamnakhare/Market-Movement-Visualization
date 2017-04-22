@@ -6,9 +6,8 @@ class SalesView extends React.Component {
     }
 
     render(){
-        debugger;   
         return(
-            <h1>Sales View {this.props.counter}</h1>
+            <h1>Sales Team</h1>
         )
     }
 }
