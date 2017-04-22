@@ -4,13 +4,12 @@ window.mapLibLoaded = function() {
     initMap();
 };
 
-function initMap() {
+function initMap(props) {
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
-    var uluru = [{lat:29.786922, lng: -95.10919},{lat:31.781325, lng: -102.347862}];
+    var uluru = [];
     var map = new google.maps.Map(document.getElementById('sales-view-map'), {
-        zoom: 4,
-        center: {lat:39.5501, lng: -105.7821}
+        zoom: 4
     });
     directionsDisplay.setMap(map);
 
@@ -22,14 +21,15 @@ function initMap() {
             map: map
         });
     };
-
-    calculateAndDisplayRoute(directionsService, directionsDisplay)
+    var source=(props) ? props.source : {lat:39.5501, lng: -105.7821, name:"Colorado"};
+    var dest=(props) ? props.destination :  {lat:41.350239, lng: -74.25783, name:"Chester"};
+    calculateAndDisplayRoute(directionsService, directionsDisplay,source,dest)
 }
 
-function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+function calculateAndDisplayRoute(directionsService, directionsDisplay,source,dest) {
     directionsService.route({
-      origin: {lat:39.5501, lng: -105.7821},
-      destination: {lat:37.8393, lng: -84.2700},
+      origin: source,
+      destination: dest,
       travelMode: 'DRIVING'
     }, function(response, status) {
       if (status === 'OK') {
@@ -44,7 +44,15 @@ class SalesMapView extends React.Component {
 
     constructor(props) {
         super(props);
+        console.log("constructor : ",props);
+
         this.loadScript();
+//        initMap(props);
+    }
+
+    componentWillReceiveProps(nextprops){
+        console.log(nextprops);
+        initMap(nextprops);
     }
 
     loadScript() {
@@ -53,7 +61,7 @@ class SalesMapView extends React.Component {
         script.setAttribute('src', src);
         document.head.appendChild(script);
     }
- 
+
     render() {
         return(
             <div style={{height: '300px'}} id="sales-view-map"></div>
