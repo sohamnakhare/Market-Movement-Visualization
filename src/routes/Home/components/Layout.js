@@ -121,7 +121,16 @@ class Layout extends React.Component {
 						/>
 					</div>
 				</div>
-
+				<footer>				    
+				    <div className="footer-bottom">
+				        <div className="container">
+				            <p className="pull-left"> Copyright © XPO Logistics 2017. All right reserved. </p>
+				            <div className="pull-right">
+				                
+				            </div>
+				        </div>
+				    </div>
+				</footer>
 			</div>
 		);
 	}
