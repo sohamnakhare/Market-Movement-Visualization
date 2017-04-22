@@ -1,4 +1,5 @@
 import React from 'react';
+import SalesMapView from './SalesMapView';
 
 class SalesView extends React.Component {
     constructor(props) {
@@ -7,9 +8,11 @@ class SalesView extends React.Component {
 
     render(){
         return(
-            <h1>Sales Team</h1>
+            <div>
+                <SalesMapView/>
+            </div>
         )
     }
 }
 
-export default SalesView;
+export default SalesView
