@@ -4,10 +4,10 @@ var Highcharts = require('highcharts');
 
 class BasicBarChart extends React.Component {
     componentDidMount() {
-        Highcharts.chart('chart-container', {
+        const props = this.props;
+        Highcharts.chart(props.chartId, {
             chart: {
-                type: 'column',
-                backgroundColor: '#f7f7f7'
+                type: 'column'
             },
 
             title: {
@@ -66,7 +66,7 @@ class BasicBarChart extends React.Component {
     render() {
         return (
             <div>
-                <div id="chart-container">
+                <div id={this.props.chartId}>
                 </div>
             </div>
         );

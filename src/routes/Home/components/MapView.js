@@ -5,7 +5,7 @@ window.mapLibLoaded = function() {
 };
 
 function initMap() {
-    var uluru = {lat:29.786922, lng: 131.044};
+    var uluru = {lat:39.5501, lng: -105.7821};
     var map = new google.maps.Map(document.getElementById('sales-view-map'), {
         zoom: 4,
         center: uluru
@@ -32,7 +32,7 @@ class SalesMapView extends React.Component {
  
     render() {
         return(
-            <div style={{height: '400px'}} id="sales-view-map"></div>
+            <div style={{height: '300px'}} id="sales-view-map"></div>
         )
     }
 }

@@ -33,7 +33,7 @@ class PieChart extends React.Component {
 		        }
 		    },
 		    series: [{
-		        name: 'Brands',
+		        name: 'Rates',
 		        colorByPoint: true,
 		        data: [{
 		            name: 'Route Atlanta to Chester 13%',

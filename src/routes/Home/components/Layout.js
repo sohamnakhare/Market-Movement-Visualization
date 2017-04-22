@@ -7,16 +7,38 @@ import Maps from './MapView';
 class Layout extends React.Component {
 	render() {
 		return(
-			<div className="container layout">
-				<div className="row">
+			<div>
+				<div className="card row form-group">
 					<div className="col-md-6">
-						<BasicBarChart />
+						<label className="row col-md-12">Origin City</label>
+						<select className="form-control" placeholder="Origin City">
+
+						</select>
 					</div>
 					<div className="col-md-6">
+						<label className="row col-md-12">Destination City</label>
+						<select className="form-control" placeholder="Destination City">
+
+						</select>
+					</div>
+				</div>
+				<div className="layout">
+				<div className="row form-group">
+					<div className="col-md-12">
 						<Maps />
 					</div>
 				</div>
-				<div className="row">
+				<div className="row form-group">
+					<div className="col-md-6">
+						<BasicBarChart 
+						chartId="barchart-container-1"/>
+					</div>
+					<div className="col-md-6">
+						<BasicBarChart 
+						chartId="barchart-container-2"/>
+					</div>
+				</div>
+				<div className="row form-group">
 					<div className="col-md-6">
 						<PieChart 
 						chartId="piechart-container-1"
@@ -28,7 +50,8 @@ class Layout extends React.Component {
 						title="Contribution of Profit"/>
 					</div>
 				</div>
-			</div>	
+			</div>
+			</div>
 		);
 	}
 }
