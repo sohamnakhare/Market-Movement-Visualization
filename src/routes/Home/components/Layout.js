@@ -2,6 +2,7 @@ import React from 'react';
 import Highchart from './Highchart';
 import BasicBarChart from './BasicBarChart';
 import PieChart from './PieChart';
+import Maps from './MapView';
 
 class Layout extends React.Component {
 	render() {
@@ -12,7 +13,7 @@ class Layout extends React.Component {
 						<BasicBarChart />
 					</div>
 					<div className="col-md-6">
-						MAP
+						<Maps />
 					</div>
 				</div>
 				<div className="row">
