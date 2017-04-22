@@ -6,6 +6,7 @@ import Maps from './MapView';
 import InfoCards from './InformationCard';
 import ComparisonChart from './ComparionChart';
 import _ from 'lodash';
+import $ from "jquery";
 
 class Layout extends React.Component {
   constructor(props){
@@ -17,8 +18,6 @@ class Layout extends React.Component {
         {lat:33.74089, lng: -84.563616 , name: "Atlanta"}
         ]
       }
-      this.state.source=this.state.cities[0].name;
-      this.state.destination=this.state.cities[1].name;
       this.changeSource = this.changeSource.bind(this);
       this.changeDestination = this.changeDestination.bind(this);
       this.findcityobj = this.findcityobj.bind(this);
@@ -38,6 +37,14 @@ class Layout extends React.Component {
           var city = _.find(this.state.cities, function(o) { return o.name == name; });
           console.log("found",city);
           return city;
+    }
+
+    componentDidMount() {
+    	$.ajax({
+    		url: "https://fandromeda.com/v2/static/json/champ_player_price_172.json"
+    	}).done(function(data) {
+    		console.log('data:::::::::::',data);
+    	})
     }
 
 	render() {
