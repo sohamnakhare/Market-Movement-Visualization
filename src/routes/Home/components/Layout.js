@@ -11,14 +11,14 @@ class Layout extends React.Component {
 				<div className="card row form-group">
 					<div className="col-md-6">
 						<label className="row col-md-12">Origin City</label>
-						<select className="form-control" value="Colorado">
-							<option>Colorado</option>
+						<select className="form-control" value="Channelview">
+							<option>Channelview</option>
 						</select>
 					</div>
 					<div className="col-md-6">
 						<label className="row col-md-12">Destination City</label>
-						<select className="form-control" value="Kentucky">
-							<option>Kentucky</option>
+						<select className="form-control" value="Odessa">
+							<option>Odessa</option>
 						</select>
 					</div>
 				</div>

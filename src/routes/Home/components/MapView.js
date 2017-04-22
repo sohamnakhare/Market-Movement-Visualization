@@ -7,7 +7,7 @@ window.mapLibLoaded = function() {
 function initMap() {
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
-    var uluru = [{lat:39.5501, lng: -105.7821},{lat:37.8393, lng: -84.2700}];
+    var uluru = [{lat:29.786922, lng: -95.10919},{lat:31.781325, lng: -102.347862}];
     var map = new google.maps.Map(document.getElementById('sales-view-map'), {
         zoom: 4,
         center: {lat:39.5501, lng: -105.7821}
