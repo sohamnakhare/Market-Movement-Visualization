@@ -37,10 +37,10 @@ class PieChart extends React.Component {
 		        colorByPoint: true,
 		        data: [{
 		            name: 'Route Atlanta to Chester 13%',
-		            y: 56.33
+		            y: 200.33
 		        }, {
 		            name: 'Others',
-		            y: 24.03,
+		            y: 5000.03,
 		            sliced: true
 		        }]
 		    }]

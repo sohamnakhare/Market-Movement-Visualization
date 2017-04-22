@@ -2,7 +2,7 @@ var React = require('react');
 var Highcharts = require('highcharts');
 
 
-class BasicBarChart extends React.Component {
+class comparisonChart extends React.Component {
     componentDidMount() {
         const props = this.props;
         Highcharts.chart(props.chartId, {
@@ -14,28 +14,27 @@ class BasicBarChart extends React.Component {
                 text: props.title
             },
             subtitle: {
-                text: ''
+                text: 'This chart shows the volume Contribution and profit contribution of this route'
             },
             xAxis: {
-                categories: [
-                    'Per mile data'
-                ],
+                categories: ["For the route selected"],
                 crosshair: true
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Freight '+props.param+' / Mile'
+                    text: 'Percentage'
                 }
             },
             tooltip: {
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+                    '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
                 footerFormat: '</table>',
                 shared: true,
                 useHTML: true
             },
+            
             plotOptions: {
                 column: {
                     pointPadding: 0.2,
@@ -43,20 +42,12 @@ class BasicBarChart extends React.Component {
                 }
             },
             series: [{
-                name: 'XPO',
-                data: [props.data.value]//, data.cost]
+                name: 'Volume Contribution',
+                data: [props.data.volume]//, data.cost]
 
             }, {
-                name: 'Minimum',
-                data: [props.data.marketMin]//, data.marketMinCost]
-
-            }, {
-                name: 'Average',
-                data: [props.data.marketAvg]//, data.marketAvgCost]
-
-            }, {
-                name: 'Maximum',
-                data: [props.data.marketMax]//, data.marketMaxCost]
+                name: 'Profit Contribution',
+                data: [props.data.profit]//, data.marketMinCost]
 
             }]
         });
@@ -72,4 +63,4 @@ class BasicBarChart extends React.Component {
     }
 }
 
-export default BasicBarChart
+export default comparisonChart
