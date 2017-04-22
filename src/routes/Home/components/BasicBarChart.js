@@ -11,22 +11,21 @@ class BasicBarChart extends React.Component {
             },
 
             title: {
-                text: 'Comparision'
+                text: props.title
             },
             subtitle: {
                 text: ''
             },
             xAxis: {
                 categories: [
-                    'Price',
-                    'Cost'
+                    'Per mile data'
                 ],
                 crosshair: true
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Freight Cost / Mile'
+                    text: 'Freight '+props.param+' / Mile'
                 }
             },
             tooltip: {
@@ -45,19 +44,19 @@ class BasicBarChart extends React.Component {
             },
             series: [{
                 name: 'XPO',
-                data: [50, 70]//, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+                data: [props.data.value]//, data.cost]
 
             }, {
                 name: 'Minimum',
-                data: [45, 62]//, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+                data: [props.data.marketMin]//, data.marketMinCost]
 
             }, {
                 name: 'Average',
-                data: [52, 74]//, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+                data: [props.data.marketAvg]//, data.marketAvgCost]
 
             }, {
                 name: 'Maximum',
-                data: [56, 80]//, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+                data: [props.data.marketMax]//, data.marketMaxCost]
 
             }]
         });

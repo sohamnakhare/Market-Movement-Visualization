@@ -41,8 +41,7 @@ class PieChart extends React.Component {
 		        }, {
 		            name: 'Others',
 		            y: 24.03,
-		            sliced: true,
-		            selected: true
+		            sliced: true
 		        }]
 		    }]
 		});
