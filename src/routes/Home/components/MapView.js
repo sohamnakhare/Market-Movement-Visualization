@@ -22,8 +22,8 @@ function initMap(props) {
             map: map
         });
     };
-    var source=(props) ? props.source : {lat:39.5501, lng: -105.7821, name:"Colorado"};
-    var dest=(props) ? props.destination :  {lat:41.350239, lng: -74.25783, name:"Chester"};
+    var source=(props.source) ? {lat:parseFloat(props.source.latitude),lng:parseFloat(props.source.longitude)} : null;
+    var dest=(props.destination) ? {lat:parseFloat(props.destination.latitude), lng:parseFloat(props.source.longitude)} : null;
     calculateAndDisplayRoute(directionsService, directionsDisplay,source,dest)
 }
 
