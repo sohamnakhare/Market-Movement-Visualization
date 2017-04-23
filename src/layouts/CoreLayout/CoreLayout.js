@@ -17,6 +17,16 @@ class CoreLayout extends React.Component {
           <div className='core-layout__viewport'>
             {this.props.children}
           </div>
+          <footer>				    
+				    <div className="footer-bottom">
+				        <div className="container">
+				            <p className="pull-left"> Copyright © XPO Logistics 2017. All right reserved. </p>
+				            <div className="pull-right">
+				                
+				            </div>
+				        </div>
+				    </div>
+				</footer>
         </div>
       </div>
     )
