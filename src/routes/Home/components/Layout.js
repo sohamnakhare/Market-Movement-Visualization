@@ -23,6 +23,13 @@ class Layout extends React.Component {
       this.findcityobj = this.findcityobj.bind(this);
     }
 
+    getInitialState() {
+      return {
+        cities: null,
+        marketAvgData: null
+      }
+    }
+
     changeSource(event){
           this.setState({source: event.target.value});
           console.log("source changed to",event.target.value)
@@ -33,17 +40,48 @@ class Layout extends React.Component {
           console.log("destination changed to",event.target.value)
     }
 
+    getChartData() {
+      var self = this;
+      $.ajax({
+        url: 'http://localhost:9000/marketAvg/'+this.state.source + '/' + this.state.destination
+      }).done(function(marketAvgData) {
+        console.log("marketAvgData : ",marketAvgData)
+        var abc ={}
+        abc.cost= {
+            "value": marketAvgData.OurTCost_BillingDist,
+            "marketMin": marketAvgData.MMinCostPerMile,
+            "marketAvg": marketAvgData.MavgCostPerMile,
+            "marketMax": marketAvgData.MMaxCostPerMile
+
+        },
+        abc.price={
+            "value": marketAvgData.OurRPerMile,
+            "marketMin": marketAvgData.MMinPricePerMile,
+            "marketAvg": marketAvgData.MavgPricePerMile,
+            "marketMax": marketAvgData.MMaxPricePerMile
+        }
+        self.setState({
+          marketAvgData: abc
+        })
+      })
+    }
+
     findcityobj(name){
-          var city = _.find(this.state.cities, function(o) { return o.name == name; });
+          var city = _.find(this.state.cities, function(o) { return o.city == name; });
           console.log("found",city);
           return city;
     }
 
     componentDidMount() {
+    var self = this;
     	$.ajax({
-    		url: "https://fandromeda.com/v2/static/json/champ_player_price_172.json"
+    		url: "http://localhost:9000/cities"
     	}).done(function(data) {
     		console.log('data:::::::::::',data);
+//    		this.state.cities=data;
+          self.setState({
+            cities: data
+          });
     	})
     }
 
@@ -76,7 +114,7 @@ class Layout extends React.Component {
 						<label className="row col-md-12">Origin City</label>
 						<select className="form-control" value={this.state.source} onChange={this.changeSource}>
               {this.state.cities.map((item) => (
-                    <option value={item.name}> {item.name}</option>
+                    <option value={item.city}> {item.city}</option>
                 ))}
             </select>
 					</div>
@@ -84,7 +122,7 @@ class Layout extends React.Component {
 						<label className="row col-md-12">Destination City</label>
 						<select className="form-control" value={this.state.destination} onChange={this.changeDestination}>
               {this.state.cities.map((item) => (
-                      <option value={item.name}> {item.name}</option>
+                      <option value={item.city}> {item.city}</option>
                   ))}
             </select>
 					</div>
@@ -97,7 +135,7 @@ class Layout extends React.Component {
 					</div>
 					<div className="row form-group">
 						<div className="col-md-6">
-							<BasicBarChart 
+							<BasicBarChart
 								param="price"
 								chartId="barchart-container-1"
 								title="Avg. Price per mile"
@@ -105,7 +143,7 @@ class Layout extends React.Component {
 							/>
 						</div>
 						<div className="col-md-6">
-							<BasicBarChart 
+							<BasicBarChart
 								param="cost"
 								chartId="barchart-container-2"
 								title="Avg. Cost per mile"
@@ -121,6 +159,16 @@ class Layout extends React.Component {
 						/>
 					</div>
 				</div>
+				<footer>
+				    <div className="footer-bottom">
+				        <div className="container">
+				            <p className="pull-left"> Copyright © XPO Logistics 2017. All right reserved. </p>
+				            <div className="pull-right">
+
+				            </div>
+				        </div>
+				    </div>
+				</footer>
 			</div>
 		);
 	}
