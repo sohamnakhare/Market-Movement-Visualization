@@ -2840,6 +2840,7 @@ var citymap = {
 };
 
 import _ from 'lodash';
+import {Typeahead} from 'react-bootstrap-typeahead';
 
 var filteredCityMap = _.clone(citymap);
 class SalesView extends React.Component {
@@ -2847,6 +2848,81 @@ class SalesView extends React.Component {
         super(props);
 
         this.state = {};
+
+this.cities = [
+  {
+    "cityCode": "AB",
+    "cityName": "Los Angeles"
+  },
+  {
+    "cityCode": "AK",
+    "cityName": "Alaska"
+  },
+  {
+    "cityCode": "CA",
+    "cityName": "California"
+  },
+  {
+    "cityCode": "CO",
+    "cityName": "Colorado"
+  },
+  {
+    "cityCode": "GA",
+    "cityName": "Georgia"
+  },
+  {
+    "cityCode": "IL",
+    "cityName": "Illinois"
+  },
+  {
+    "cityCode": "AL",
+    "cityName": "Alabama"
+  },
+  {
+    "cityCode": "AR",
+    "cityName": "Arkansas"
+  },
+  {
+    "cityCode": "FL",
+    "cityName": "Florida"
+  },
+  {
+    "cityCode": "MI",
+    "cityName": "Michigan"
+  },
+  {
+    "cityCode": "MN",
+    "cityName": "Minnesota"
+  },
+  {
+    "cityCode": "MO",
+    "cityName": "Missouri"
+  },
+  {
+    "cityCode": "NC",
+    "cityName": "North Carolina"
+  },
+  {
+    "cityCode": "NJ",
+    "cityName": "New Jersey"
+  },
+  {
+    "cityCode": "OH",
+    "cityName": "Ohio"
+  },
+  {
+    "cityCode": "OK",
+    "cityName": "Oklahoma"
+  },
+  {
+    "cityCode": "PA",
+    "cityName": "Pennsylvania"
+  },
+  {
+    "cityCode": "TX",
+    "cityName": "Texas"
+  }
+];
 
         this.updateSearchText = this.updateSearchText.bind(this);
         this.filterCityMap = this.filterCityMap.bind(this);
@@ -2857,8 +2933,8 @@ class SalesView extends React.Component {
         this.searchText = text;
     }
 
-    filterCityMap() {
-        var searchText = this.searchText;
+    filterCityMap(selectedItems) {
+        var searchText = selectedItems[0].cityCode;
         var states = Object.keys(citymap);
         var stateFound = _.find(states, (state)=> state===searchText);
         if(stateFound){
@@ -2882,17 +2958,14 @@ class SalesView extends React.Component {
                     </div>
                 </div>
                 <div className="row form-group">
+                    <div className="col-md-3"></div>
                     <div className="col-md-6">
-                        <label>Search by State</label>
-                        <div className="input-group">
-                            <input type="text" className="form-control"
-                                onChange={this.updateSearchText}
-                                placeholder="Enter State Name" aria-describedby="basic-addon2"/>
-                            <span className="input-group-addon" 
-                                    onClick={this.filterCityMap}>
-                                <span className="glyphicon glyphicon-search"></span>
-                            </span>
-                        </div>
+                        <Typeahead
+                            labelKey="cityName"
+                            options={this.cities}
+                            placeholder="Search States"
+                            onChange={this.filterCityMap}
+                        />
                     </div>
                 </div>
                 <SalesMapView citymap={filteredCityMap}/>
@@ -2902,3 +2975,17 @@ class SalesView extends React.Component {
 }
 
 export default SalesView
+
+// <div className="col-md-3"></div>
+//                     <div className="col-md-6">
+//                         <div className="input-group">
+//                             <input type="text" className="form-control"
+//                                 onChange={this.updateSearchText}
+//                                 placeholder="Enter State Name" aria-describedby="basic-addon2"/>
+//                             <span className="input-group-addon" 
+//                                     onClick={this.filterCityMap}>
+//                                 <span className="glyphicon glyphicon-search"></span>
+//                             </span>
+//                         </div>
+                        
+//                     </div>

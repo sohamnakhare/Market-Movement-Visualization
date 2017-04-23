@@ -29,7 +29,7 @@ function initMap() {
             });
                 
             let infoWindow= new google.maps.InfoWindow({
-                content: "<div>"+city+"</div>"
+                content: "<div>Average Price: "+citymap[city].population+"</div>"
             });
 
             google.maps.event.addListener(cityCircle, 'click', function(ev){
@@ -52,7 +52,10 @@ function initMap() {
                     frieghtPath.setMap(map);
                 }
             }
-            google.maps.event.trigger(map, 'resize');
+
+            setTimeout(()=>{
+                google.maps.event.trigger(map, 'resize');
+            },2000);
         }
 }
 

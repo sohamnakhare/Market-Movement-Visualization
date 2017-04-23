@@ -4,11 +4,12 @@ window.mapLibLoaded = function() {
     initMap();
 };
 
+var map;
 function initMap(props) {
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
     var uluru = [];
-    var map = new google.maps.Map(document.getElementById('sales-view-map'), {
+    map = new google.maps.Map(document.getElementById('sales-view-map'), {
         zoom: 0
     });
     directionsDisplay.setMap(map);
@@ -32,8 +33,16 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay,source,de
       destination: dest,
       travelMode: 'DRIVING'
     }, function(response, status) {
+        debugger;
       if (status === 'OK') {
         directionsDisplay.setDirections(response);
+        var infowindow2 = new google.maps.InfoWindow();
+        var content = "<h5>Ongoing frieght volume: 100k lbs</h5><br/>"+
+                      "<h5>Frieght volume for next 7 days : 10000k lbs</h5><br/>"+
+                      "<h5>Frieght volume for last 7 days : 10000k lbs</h5>";  
+        infowindow2.setContent(content);
+        infowindow2.setPosition(response.routes[0].legs[0].steps[15].end_location);
+        infowindow2.open(map);
       } else {
         window.alert('Directions request failed due to ' + status);
       }
